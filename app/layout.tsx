@@ -4,7 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { ActiveThemeProvider } from "@/components/active-theme";
 import { cn } from "@/lib/utils";
-import { cookies } from "next/headers";
+// import { cookies } from "next/headers";
 
 const META_THEME_COLORS = {
   light: "#ffffff",
@@ -31,9 +31,9 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const cookieStore = await cookies()
-  const activeThemeValue = cookieStore.get("active_theme")?.value
-  const isScaled = activeThemeValue?.endsWith("-scaled")
+  // const cookieStore = await cookies()
+  // const activeThemeValue = cookieStore.get("active_theme")?.value
+  // const isScaled = activeThemeValue?.endsWith("-scaled")
 
   // Combine font variables for use in className
   const fontVariables = `${geistSans.variable} ${geistMono.variable}`;
@@ -70,7 +70,8 @@ export default async function RootLayout({
         disableTransitionOnChange
         enableColorScheme
         >
-          <ActiveThemeProvider initialTheme={activeThemeValue}>
+            {/* add initialTheme={activeThemeValue} when not static */}
+          <ActiveThemeProvider>
             {children}
           </ActiveThemeProvider>
           
